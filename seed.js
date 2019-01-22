@@ -70,6 +70,17 @@ db.sync({ forced: true })
         console.log('Database is synctified!');
 
         return Promise.all([vegetablesPromise, gardenerPromise, plotPromise]);
+    })
+    .then((insertedData) => {
+
+        const [vegetables, gardeners, plots] = insertedData;
+        const [cabbage, carrot, potato, broccoli] = vegetables;
+        const [hector, bill, frank, chuck] = gardeners;
+        const [plot1, plot2, plot3, plot4] = plots;
+
+        console.log(Object.keys(hector.__proto__))
+        const promise1 = hector.setPlot(hector.id); //this will put hector's id in the plots table
+        return Promise.all([promise1]);
 
     })
     .catch((err) => {
